@@ -1,1 +1,1 @@
-# [AdmitDecisionSystem]
+# AdmitDecisionSystem
