@@ -24,6 +24,7 @@ import { ViewStudentComponent } from '../../pages/students/view/view.component';
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
     ClipboardModule

@@ -11,17 +11,19 @@ export class MainService {
     
   }
 
-  login(username: string, password: string) {
-    return this.http.post<any>('/users/authenticate', { username, password })
+  login(email: string, password: string) {
+    return this.http.post<any>('http://10.242.16.193:8042/users/signin', { email, password })
         .pipe(map(user => {
+          console.log('Success');
             // login successful if there's a user in the response
             if (user) {
                 // store user details and basic auth credentials in local storage 
                 // to keep user logged in between page refreshes
-                user.authdata = window.btoa(username + ':' + password);
-                localStorage.setItem('currentUser', JSON.stringify(user));
+                user.authdata = window.btoa(email + ':' + password);
+                console.log(user);
+                console.log(user.data);
+                localStorage.setItem('currentUser', JSON.stringify(user.data));
             }
-
             return user;
         }));
   }
@@ -29,5 +31,6 @@ export class MainService {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
   }
 }
