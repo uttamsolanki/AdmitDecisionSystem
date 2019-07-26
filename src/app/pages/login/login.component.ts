@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         if(response.status == 1){
           console.log("Logged In Successfully");
           
-          this.router.navigateByUrl('/dashboard');
+          this.router.navigateByUrl('/students');
           this.loginForm.reset();
           //let data = response.data;
           //console.log(data);

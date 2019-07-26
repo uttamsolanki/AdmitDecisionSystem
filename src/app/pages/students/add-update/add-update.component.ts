@@ -13,57 +13,67 @@ export class AddUpdateStudentComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
-
+  formInvalid = false;
+  
   constructor(private mainService : MainService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router) { }
-
-  ngOnInit() {
-    this.addStudentForm = this.formBuilder.group({
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
-      contactNumber: ['', Validators.required],
-      emailId: ['', Validators.required],
-      country: ['', Validators.required],
-      instituteName: ['', Validators.required],
-      degreeType: [''],
-      instituteScore: ['', Validators.required],
-      scoreType: [''],
-      studentId: [''],
-      uWinDegreeType: [''],
-      uWinScore: [''],
-      uWinScoreType: ['']
-    });
-
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-  }
-
-  get f() { return this.addStudentForm.controls; }
-
-  login(){
-    this.submitted = true;
     
-    if (this.addStudentForm.invalid) {
-      return;
+    ngOnInit() {
+      this.addStudentForm = this.formBuilder.group({
+        firstname: ['', Validators.required],
+        lastname: ['', Validators.required],
+        emailId: ['', Validators.required],
+        contactNumber: ['', Validators.required],
+        country: ['', Validators.required],
+        instituteName: ['', Validators.required],
+        degreeType: [''],
+        instituteScore: ['', Validators.required],
+        scoreType: [''],
+        studentId: [''],
+        uWinDegreeType: [''],
+        uWinScore: [''],
+        uWinScoreType: ['']
+      });
+      
+      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
-    console.log("Logged Values:",this.f.scoreType.value,this.f.country.value);
-    this.mainService.login(this.f.username.value,this.f.password.value).subscribe((response:any)=>{	
-      console.log(response.status);
-      if(response.status == 1){
-        console.log("Data added successfully");
-        
-        //this.router.navigateByUrl('/dashboard');
-        this.addStudentForm.reset();
-        //let data = response.data;
-        //console.log(data);
+    
+    get f() { return this.addStudentForm.controls; }
+    
+    addStudent(){
+      this.submitted = true;
+      
+      if (this.addStudentForm.invalid) {
+        console.log("Please fill the form first!");
+        this.formInvalid = true;
+        return;
       }
-      else{
-        console.log("Something Went Wrong!");
+      this.formInvalid = false;
+      console.log("Logged Values:",this.f.firstname.value,this.f.lastname.value,this.f.emailId.value,this.f.contactNumber.value,this.f.country.value,
+      this.f.instituteName.value,this.f.degreeType.value,this.f.instituteScore.value,this.f.scoreType.value,this.f.studentId.value,
+      this.f.uWinDegreeType.value,this.f.uWinScore.value, this.f.uWinScoreType.value);
+      
+      this.mainService.addStudent(this.f.firstname.value,this.f.lastname.value,this.f.emailId.value,this.f.contactNumber.value,this.f.country.value,
+        this.f.instituteName.value,this.f.degreeType.value,this.f.instituteScore.value,this.f.scoreType.value,this.f.studentId.value,
+        this.f.uWinDegreeType.value,this.f.uWinScore.value, this.f.uWinScoreType.value).subscribe((response:any)=>{	
+          console.log(response.status);
+          if(response.status == 1){
+            console.log("Data added successfully");
+            
+            //this.router.navigateByUrl('/dashboard');
+            this.addStudentForm.reset();
+            //let data = response.data;
+            //console.log(data);
+          }
+          else{
+            console.log("Something Went Wrong!");
+          }
+        },(err)=>{
+          console.log(err);
+        });
       }
-    },(err)=>{
-      console.log(err);
-    });
-  }
-
+      
 }
+    
