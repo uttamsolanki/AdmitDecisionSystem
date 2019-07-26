@@ -16,6 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StudentsComponent } from '../../pages/students/students.component';
 import { AddUpdateStudentComponent } from '../../pages/students/add-update/add-update.component';
 import { ViewStudentComponent } from '../../pages/students/view/view.component';
+import { AdmitComponent } from '../../pages/admit/admit.component';
 
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -38,6 +39,7 @@ import { ViewStudentComponent } from '../../pages/students/view/view.component';
     StudentsComponent,
     AddUpdateStudentComponent,
     ViewStudentComponent,
+    AdmitComponent,
   ]
 })
 

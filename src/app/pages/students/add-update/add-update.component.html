@@ -1,6 +1,7 @@
 <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
 </div>
 <div class="container-fluid mt--7">
+<<<<<<< HEAD
     <div class="row">
         <div class="col-xl-12 order-xl-1">
             <div class="card bg-secondary shadow">
@@ -10,6 +11,130 @@
                             <h3 class="mb-0">Add/Update Student Data</h3>
                         </div>
                     </div>
+=======
+  <div class="row">
+    <div class="col-xl-12 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Add/Update Student Data</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <h6 class="heading-small text-muted mb-4">Student information</h6>
+            <div class="pl-lg-4">
+            	<div class="row">
+	                <div class="col-lg-6">
+	                  <div class="form-group">
+	                    <label class="form-control-label" for="input-first-name">First name</label>
+	                    <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name">
+	                  </div>
+	                </div>
+	                <div class="col-lg-6">
+	                  <div class="form-group">
+	                    <label class="form-control-label" for="input-last-name">Last name</label>
+	                    <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name">
+	                  </div>
+	                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-contact">Contact</label>
+                    <input type="text" id="input-contact" class="form-control form-control-alternative" placeholder="Contact">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email">Email address</label>
+                    <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="abc@example.com">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+	                <div class="col-lg-6">
+	                  <div class="form-group">
+	                    <label class="form-control-label" for="input-country">Country</label>
+	                    <input type="text" id="input-country" class="form-control form-control-alternative" placeholder="Country">
+	                  </div>
+	                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+            <!-- Address -->
+            <h6 class="heading-small text-muted mb-4">Highest Degree before UWindsor</h6>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-universitycollege">University / College name</label>
+                    <input type="text" id="input-universitycollege" class="form-control form-control-alternative" placeholder="University / College name">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-typeofdegree">Degree Type</label>
+                    <select class="form-control form-control-alternative">
+          					  <option value="bachelors">Bachelors</option>
+          					  <option value="masters">Masters</option>
+          					</select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-score">Score</label>
+                    <input type="text" id="input-score" class="form-control form-control-alternative" placeholder="score">
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-scoretype">Score Type</label>
+                    <select class="form-control form-control-alternative">
+					  <option value="cgpa">CGPA</option>
+					  <option value="gpa">GPA</option>
+					  <option value="percentage">Percentage</option>
+					</select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="my-4" />
+            <!-- Address -->
+            <h6 class="heading-small text-muted mb-4">UWindsor Score</h6>
+            <div class="pl-lg-4">
+            	<div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-studentid">Student ID</label>
+                    <input type="text" id="input-studentid" class="form-control form-control-alternative" placeholder="student id">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-currenttypeofdegree">Degree Type</label>
+                    <select class="form-control form-control-alternative">
+					  <option value="bachelors">Bachelors</option>
+					  <option value="masters">Masters</option>
+					</select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-currentscore">Score</label>
+                    <input type="text" id="input-currentscore" class="form-control form-control-alternative" placeholder="score">
+                  </div>
+>>>>>>> aa88900072f7b7166ba2a104eefaf3e5c1fb4c82
                 </div>
                 <div class="card-body">
                     <form [formGroup]="addStudentForm" role="form">
