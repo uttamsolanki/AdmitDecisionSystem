@@ -8,6 +8,7 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import { StudentsComponent } from '../../pages/students/students.component';
 import { AddUpdateStudentComponent } from '../../pages/students/add-update/add-update.component';
 import { ViewStudentComponent } from '../../pages/students/view/view.component';
+import { AdmitComponent } from '../../pages/admit/admit.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -18,4 +19,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'students',       component: StudentsComponent },
     { path: 'students/addupdate',	component: AddUpdateStudentComponent },
     { path: 'students/view',	component: ViewStudentComponent },
+    { path: 'admit',	component: AdmitComponent },
 ];
