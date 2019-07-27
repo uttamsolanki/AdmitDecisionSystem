@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MainService } from '../../services/main.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import Chart from 'chart.js';
 
 import {
@@ -22,11 +25,25 @@ export class AdmitComponent implements OnInit {
   public clicked: boolean = true;
   public clicked1: boolean = false;
 
-  constructor() { }
+  admitForm: FormGroup;
+  loading = false;
+  submitted = false;
+  returnUrl: string;
+
+  constructor(private mainService : MainService,
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
-    
+    this.admitForm = this.formBuilder.group({
+      previousInst: ['']
+    });
+
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
+
+  get f() { return this.admitForm.controls; }
 
   getUniversityData(){
     this.searched = true;
