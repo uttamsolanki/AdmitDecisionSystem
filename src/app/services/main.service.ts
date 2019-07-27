@@ -46,6 +46,10 @@ export class MainService {
         }));
   }
 
+  listStudent(){
+      return this.http.get('http://10.242.25.34:8042/student');
+  }
+
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
