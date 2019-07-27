@@ -21,6 +21,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     private router: Router) {}
     
     ngOnInit() {
+      var currentUser = localStorage.getItem("currentUser");
+      if(currentUser){
+        this.router.navigateByUrl('/dashboard');
+      }
+
       this.loginForm = this.formBuilder.group({
         username: ['', Validators.required],
         password: ['', Validators.required]
@@ -32,43 +37,26 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
     
     get f() { return this.loginForm.controls; }
-    
-    onSubmit(){
-      this.submitted = true;
-      console.log("Login");
-      if (this.loginForm.invalid) {
-        return;
-      }
-      console.log("Logged Values:",this.f.username.value,this.f.password.value);
-      this.mainService.login(this.f.username.value,this.f.password.value).subscribe((response:any)=>{	
-        console.log(response.status);
-        if(response.status == 0){
-        }
-        else{
-          let data = response.data;
-          console.log(data);
-        }
-      },(err)=>{
-        console.log("error");
-      });
-    }
-    
 
     login(){
       this.submitted = true;
-      console.log("Without Login");
-      console.log("Logged Values:",this.f.username.value,this.f.password.value);
+      //console.log("Logged Values:",this.f.username.value,this.f.password.value);
       if (this.loginForm.invalid) {
         return;
       }
       console.log("Logged Values:",this.f.username.value,this.f.password.value);
       this.mainService.login(this.f.username.value,this.f.password.value).subscribe((response:any)=>{	
         console.log(response.status);
-        if(response.status == 0){
+        if(response.status == 1){
+          console.log("Logged In Successfully");
+          
+          this.router.navigateByUrl('/students');
+          this.loginForm.reset();
+          //let data = response.data;
+          //console.log(data);
         }
         else{
-          let data = response.data;
-          console.log(data);
+          console.log("Invalid Credentials!");
         }
       },(err)=>{
         console.log("error");

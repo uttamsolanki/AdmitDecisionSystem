@@ -25,6 +25,7 @@ import { AdmitComponent } from '../../pages/admit/admit.component';
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
     ClipboardModule
