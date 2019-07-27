@@ -12,6 +12,12 @@ import { MapsComponent } from '../../pages/maps/maps.component';
 import { UserProfileComponent } from '../../pages/user-profile/user-profile.component';
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { StudentsComponent } from '../../pages/students/students.component';
+import { AddUpdateStudentComponent } from '../../pages/students/add-update/add-update.component';
+import { ViewStudentComponent } from '../../pages/students/view/view.component';
+import { AdmitComponent } from '../../pages/admit/admit.component';
+
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -19,6 +25,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
     ClipboardModule
@@ -28,7 +35,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UserProfileComponent,
     TablesComponent,
     IconsComponent,
-    MapsComponent
+    MapsComponent,
+    StudentsComponent,
+    AddUpdateStudentComponent,
+    ViewStudentComponent,
+    AdmitComponent,
   ]
 })
 
