@@ -26,28 +26,27 @@ export class StudentsComponent implements OnInit {
     });
   }
 
-  viewStudent(id:string){
-    
-		let studentId: NavigationExtras = {
-			queryParams: {
-				special: JSON.stringify(id)
-			}
-    };
-    this.router.navigateByUrl('/students/view', studentId);
-  }
+  // viewStudent(id:string){
+	// 	let studentId: NavigationExtras = {
+	// 		queryParams: {
+	// 			special: JSON.stringify(id)
+	// 		}
+  //   };
+  //   this.router.navigateByUrl('/students/view', studentId);
+  // }
 
   addStudent(){
     this.router.navigateByUrl('/students/addupdate');
   }
 
-  updateStudent(id:string){
-    let studentId: NavigationExtras = {
-			queryParams: {
-				special: JSON.stringify(id)
-			}
-    };
-    this.router.navigateByUrl('/students/addupdate/id',studentId);
-  }
+  // updateStudent(id:string){
+  //   let studentId: NavigationExtras = {
+	// 		queryParams: {
+	// 			special: JSON.stringify(id)
+	// 		}
+  //   };
+  //   this.router.navigateByUrl('/students/addupdate/id',studentId);
+  // }
 
   deleteStudent(id:string){
   }

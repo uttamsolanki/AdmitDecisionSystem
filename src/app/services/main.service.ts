@@ -54,6 +54,10 @@ export class MainService {
       return this.http.delete(this.url+'/student');
   }
 
+  listStudentId(id:string){
+    return this.http.get(this.url+'/student/'+id);
+  }
+
   updateStudent(id:string){
 
   }

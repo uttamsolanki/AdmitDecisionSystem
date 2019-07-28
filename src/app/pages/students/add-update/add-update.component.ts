@@ -3,6 +3,8 @@ import { MainService } from '../../../services/main.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 
+import { studentModal } from '../../../modals/studentModal';
+
 @Component({
   selector: 'app-add-update',
   templateUrl: './add-update.component.html',
@@ -14,6 +16,9 @@ export class AddUpdateStudentComponent implements OnInit {
   submitted = false;
   returnUrl: string;
   formInvalid = false;
+  studentData:studentModal[];
+  studentId="";
+  title="Add Student Data";
   
   constructor(private mainService : MainService,
     private formBuilder: FormBuilder,
@@ -28,13 +33,46 @@ export class AddUpdateStudentComponent implements OnInit {
         contactNumber: ['', Validators.required],
         country: ['', Validators.required],
         instituteName: ['', Validators.required],
-        degreeType: [''],
+        degreeType: ['bachelors'],
         instituteScore: ['', Validators.required],
-        scoreType: [''],
+        scoreType: ['cgpa'],
         studentId: [''],
-        uWinDegreeType: [''],
+        uWinDegreeType: ['bachelors'],
         uWinScore: [''],
-        uWinScoreType: ['']
+        uWinScoreType: ['cgpa']
+      });
+      
+      this.route.params.subscribe(params => {
+        this.studentId = params['id'];
+        
+        if(this.studentId){
+          this.title="Update Student Data";
+
+          this.mainService.listStudentId(this.studentId).subscribe((res:any)=>{
+            console.log(res);
+            if(res.status == 1){
+              this.studentData = res.data;
+              console.log(this.studentData);
+  
+              this.f.firstname.setValue(this.studentData[0].fname);
+              this.f.lastname.setValue(this.studentData[0].lname);
+              this.f.emailId.setValue(this.studentData[0].email);
+              this.f.contactNumber.setValue(this.studentData[0].contact);
+              this.f.country.setValue(this.studentData[0].country);
+              this.f.instituteName.setValue(this.studentData[0].high_degree);
+              this.f.degreeType.setValue(this.studentData[0].high_dtype);
+              this.f.instituteScore.setValue(this.studentData[0].high_degree_score);
+              this.f.scoreType.setValue(this.studentData[0].high_degree_stype);
+              this.f.studentId.setValue(this.studentData[0].uwid);
+              this.f.uWinDegreeType.setValue(this.studentData[0].uw_degree_type);
+              this.f.uWinScore.setValue(this.studentData[0].uw_score);
+              this.f.uWinScoreType.setValue(this.studentData[0].uw_stype);
+            }
+            else{
+              console.log("Errrorrorororror!");
+            }
+          });
+        }
       });
       
       this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -75,5 +113,5 @@ export class AddUpdateStudentComponent implements OnInit {
         });
       }
       
-}
+    }
     

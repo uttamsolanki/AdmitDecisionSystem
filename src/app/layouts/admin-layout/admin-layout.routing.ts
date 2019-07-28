@@ -18,6 +18,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'maps',           component: MapsComponent },
     { path: 'students',       component: StudentsComponent },
     { path: 'students/addupdate',	component: AddUpdateStudentComponent },
-    { path: 'students/view',	component: ViewStudentComponent },
+    { path: 'students/addupdate/:id',	component: AddUpdateStudentComponent },
+    { path: 'students/view/:id',	component: ViewStudentComponent },
     { path: 'admit',	component: AdmitComponent },
 ];

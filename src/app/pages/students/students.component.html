@@ -43,8 +43,8 @@
                                 </td>
 
                                 <td>
-                                    <button type="button" class="btn btn-primary" (click)="viewStudent(stud._id)">View</button>
-                                    <button type="button" class="btn btn-success" (click)="updateStudent(stud._id)">Update</button>
+                                    <button type="button" class="btn btn-primary" [routerLink]="[ '/students/view',stud._id]">View</button>
+                                    <button type="button" class="btn btn-success" [routerLink]="[ '/students/addupdate',stud._id]">Update</button>
                                     <button type="button" class="btn btn-danger" (click)="deleteStudent(stud._id)">Delete</button>
                                 </td>
                             </tr>
