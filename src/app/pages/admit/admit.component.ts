@@ -3,7 +3,7 @@ import { MainService } from '../../services/main.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import Chart from 'chart.js';
-
+import { universityModal } from '../../modals/universityModal';
 import {
   chartOptions,
   parseOptions,
@@ -17,6 +17,8 @@ import {
   styleUrls: ['./admit.component.scss']
 })
 export class AdmitComponent implements OnInit {
+  universityList : universityModal[];
+
   searched = false;
 
   public datasets: any;
@@ -36,6 +38,14 @@ export class AdmitComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    this.mainService.listUniversity().subscribe((res:any)=>{
+      //console.log(res);
+      //console.log(res.data);
+      if(res.status == 1){
+        this.universityList = res.data;
+      }
+    });
+
     this.admitForm = this.formBuilder.group({
       previousInst: ['']
     });
