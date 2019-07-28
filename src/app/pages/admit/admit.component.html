@@ -19,7 +19,8 @@
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-typeofdegree">Previous Institution</label>
                                         <select class="form-control form-control-alternative" formControlName="previousInst">
-                      <option *ngFor="let uni of universityList;" value="">{{uni.high_degree}}</option>
+                        <option value="" disabled>Please Select...</option>
+                      <option *ngFor="let uni of universityList;" value="{{uni.high_degree}}">{{uni.high_degree}}</option>
                     </select>
                                     </div>
                                 </div>
