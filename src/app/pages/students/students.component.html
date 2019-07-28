@@ -5,7 +5,14 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0">
-                    <h3 class="mb-0">Students</h3>
+                    <div class="row">
+                        <div class="col-sm-8 col-md-7 col-lg-9">
+                            <h3 class="mb-0">Students</h3>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="mb-0 btn btn-success" (click)="addStudent()">Add Student</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="table-responsive">
                     <table class="table align-items-center table-flush">
@@ -19,27 +26,29 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+
+                            <tr *ngFor="let stud of studentList;">
                                 <td>
-                                    John Smith
+                                    {{stud.fname}} {{stud.lname}}
                                 </td>
 
                                 <td>
-                                    abc@example.com
+                                    {{stud.email}}
                                 </td>
                                 <td>
-                                    Canada
+                                    {{stud.country}}
                                 </td>
                                 <td>
-                                    Ganpat University
+                                    {{stud.high_degree}}
                                 </td>
 
                                 <td>
-                                    <button type="button" class="btn btn-primary" (click)="viewData()">View</button>
-                                    <button type="button" class="btn btn-success">Update</button>
-                                    <button type="button" class="btn btn-danger">Delete</button>
+                                    <button type="button" class="btn btn-primary" (click)="viewStudent(stud._id)">View</button>
+                                    <button type="button" class="btn btn-success" (click)="updateStudent(stud._id)">Update</button>
+                                    <button type="button" class="btn btn-danger" (click)="deleteStudent(stud._id)">Delete</button>
                                 </td>
                             </tr>
+
                         </tbody>
                     </table>
                 </div>

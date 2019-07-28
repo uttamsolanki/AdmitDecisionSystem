@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
+import { MainService } from '../../services/main.service';
+
+import { studentModal } from '../../modals/studentModal';
 
 @Component({
   selector: 'app-students',
@@ -7,13 +10,45 @@ import { Router } from '@angular/router';
   styleUrls: ['./students.component.scss']
 })
 export class StudentsComponent implements OnInit {
+  
+  studentList : studentModal[];
 
-  constructor(private router: Router) { }
+  constructor(private mainService : MainService,
+    private router: Router) { }
 
   ngOnInit() {
+    this.mainService.listStudent().subscribe((res:any)=>{
+      console.log(res);
+      if(res.status == 1){
+        this.studentList = res.data;
+        
+      }
+    });
   }
 
-  viewData(){
-    this.router.navigateByUrl('/students/view');
+  viewStudent(id:string){
+    
+		let studentId: NavigationExtras = {
+			queryParams: {
+				special: JSON.stringify(id)
+			}
+    };
+    this.router.navigateByUrl('/students/view', studentId);
+  }
+
+  addStudent(){
+    this.router.navigateByUrl('/students/addupdate');
+  }
+
+  updateStudent(id:string){
+    let studentId: NavigationExtras = {
+			queryParams: {
+				special: JSON.stringify(id)
+			}
+    };
+    this.router.navigateByUrl('/students/addupdate/id',studentId);
+  }
+
+  deleteStudent(id:string){
   }
 }
