@@ -58,6 +58,10 @@ export class MainService {
 
   }
 
+  listUniversity(){
+    return this.http.get(this.url+'/student/university');
+  }
+
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
