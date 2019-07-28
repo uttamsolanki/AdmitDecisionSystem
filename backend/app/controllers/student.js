@@ -40,25 +40,16 @@ module.exports = {
     },
 
     edit:async (req, res, next)=>{
-        let day = dateFormat(Date.now(), "yyyy-mm-dd HH:MM:ss");
-        const {name, desc} = req.body;
-        let findUser = null;
+        // let day = dateFormat(Date.now(), "yyyy-mm-dd HH:MM:ss");
+        // const {name, desc} = req.body;
+        // let findUser = null;
+        //
+        // await find(User, {_id: req.user.sub}, null, (error, data) => {
+        //     findUser = data[0];
+        // });
 
-        await find(User, {_id: req.user.sub}, null, (error, data) => {
-            findUser = data[0];
-        });
 
-        let newProject = new Project();
-        newProject.name = name;
-        newProject.desc = desc;
-        newProject.scenario=[];
-        newProject.created_date = day;
-        newProject.updated_date = day;
-        await newProject.save();
-        await newProject.save();
-        findUser.projects.push(newProject);
-        findUser.save();
-        var rep = await successResponse(null,"Project Saved Successfully",newProject)
+        var rep = await successResponse(null,"Project Saved Successfully",{test:req.params.id})
         return res.header('Content-type', 'application/json').status(HttpStatus.OK).json(rep);
 
     },
@@ -105,13 +96,11 @@ module.exports = {
     },
     delete: async (req, res, next) => {
 
-        let user_id = req.user.sub;
-        let project = {};
-        const {p_id} = req.body;
 
-        Project.remove({ _id: p_id }, function(err) {
+
+        Student.remove({ _id: req.params.id }, function(err) {
             if (!err) {
-                var resp = {status:1,message: 'Project Deleted Successfully',data:{id:p_id}};
+                var resp = {status:1,message: 'Student Deleted Successfully',data:{id:req.params.id}};
             }
             else {
                 var resp = {status:1,message: 'Something Wrong',data:[]};
