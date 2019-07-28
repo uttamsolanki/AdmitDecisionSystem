@@ -7,13 +7,13 @@ const {auth} = require('../app/helpers/auth');
 router.route("/save")
     .post(StudentController.save);
 
-router.route("/edit")
-    .post(auth,StudentController.edit);
+router.route("/edit/:id")
+    .put(StudentController.edit);
 
 router.route("/")
     .get(StudentController.get);
 
-router.route("/delete")
-    .post(auth, StudentController.delete);
+router.route("/delete/:id")
+    .delete(StudentController.delete);
 
 module.exports = router;
