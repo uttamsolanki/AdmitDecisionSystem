@@ -80,12 +80,26 @@ module.exports = {
         var rep = await successResponse(null,"Project  succussfully",newStudent)
         return res.header('Content-type', 'application/json').status(HttpStatus.OK).json(rep);
         },
-    get: async (req, res, next) => {
+    all: async (req, res, next) => {
 
 
         Student.find({})
             .exec(function (err, result){
                // console.log(result);
+                if(result) {
+                    var resp = {status: 1, message: 'Student list', data: result};
+                } else{
+                    var resp = {status:1,message: 'Student list',data:result};
+                }
+                res.json(resp);
+            });
+    },
+    get: async (req, res, next) => {
+
+
+        Student.find({_id:req.params.id})
+            .exec(function (err, result){
+                // console.log(result);
                 if(result) {
                     var resp = {status: 1, message: 'Student list', data: result};
                 } else{
@@ -120,27 +134,18 @@ module.exports = {
         //     });
     },
 
-    getProjectDetails: async (req, res, next) => {
+    uni: async (req, res, next) => {
 
-        let project_id = req.body.project_id;
-        let project = {};
-
-        // await find(Project, {_id: project_id}, null, (error, data) => {
-        //     project = data;
-        // });
-
-         Project.find({_id: project_id})
-           .populate('scenario') // works
-            .exec(function (err, scenario){
-               let respData =[];
-               if(!err){
-                   respData=scenario[0]
-               }
-                 var resp = {status:1,message: 'Project list ',data:respData};
-                 res.json(resp);
+        Student.find({}).select('high_degree -_id')
+            .exec(function (err, result){
+                // console.log(result);
+                if(result) {
+                    var resp = {status: 1, message: 'University list', data: result};
+                } else{
+                    var resp = {status:1,message: 'University list',data:result};
+                }
+                res.json(resp);
             });
-
-        var resp = {status:1,message: 'Projects list ',data:project};
         //res.header('Content-Type', 'application/json').status(HttpStatus.OK).json(resp);
     },
     getScenarioDetails:async (req, res, next) => {

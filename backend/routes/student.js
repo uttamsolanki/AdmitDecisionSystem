@@ -10,8 +10,17 @@ router.route("/save")
 router.route("/edit/:id")
     .put(StudentController.edit);
 
-router.route("/")
+
+
+
+router.route("/university")
+    .get(StudentController.uni);
+
+router.route("/:id")
     .get(StudentController.get);
+
+router.route("/")
+    .get(StudentController.all);
 
 router.route("/delete/:id")
     .delete(StudentController.delete);
