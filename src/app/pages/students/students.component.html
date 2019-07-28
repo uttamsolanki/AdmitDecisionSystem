@@ -9,7 +9,12 @@
                         <div class="col-sm-8 col-md-7 col-lg-9">
                             <h3 class="mb-0">Students</h3>
                         </div>
-                        <div class="col">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 ">
+                            <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Search">
+                        </div>
+                        <div class="offset-md-6 col-md-2 ">
                             <button type="button" class="mb-0 btn btn-success" (click)="addStudent()">Add Student</button>
                         </div>
                     </div>
@@ -27,7 +32,7 @@
                         </thead>
                         <tbody>
 
-                            <tr *ngFor="let stud of studentList;">
+                            <tr *ngFor="let stud of studentList | search:searchTerm">
                                 <td>
                                     {{stud.fname}} {{stud.lname}}
                                 </td>

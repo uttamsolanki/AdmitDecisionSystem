@@ -12,7 +12,7 @@ import { studentModal } from '../../modals/studentModal';
 export class StudentsComponent implements OnInit {
   
   studentList : studentModal[];
-
+  searchTerm:string;
   constructor(private mainService : MainService,
     private router: Router) { }
 
