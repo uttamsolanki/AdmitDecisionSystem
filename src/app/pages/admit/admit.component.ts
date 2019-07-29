@@ -39,8 +39,8 @@ export class AdmitComponent implements OnInit {
 
   ngOnInit() {
     this.mainService.listUniversity().subscribe((res:any)=>{
-      //console.log(res);
-      //console.log(res.data);
+      console.log(res);
+      console.log(res.data);
       if(res.status == 1){
         this.universityList = res.data;
       }
@@ -57,6 +57,11 @@ export class AdmitComponent implements OnInit {
 
   getUniversityData(){
     this.searched = true;
+
+    this.mainService.universityResult(this.f.previousInst.value).subscribe((res:any)=>{
+      console.log(res);
+      console.log(res.data);
+    });
 
     this.datasets = [
       [0, 20, 10, 30, 15, 40, 20, 60, 60],

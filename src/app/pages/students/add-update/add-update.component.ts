@@ -19,6 +19,7 @@ export class AddUpdateStudentComponent implements OnInit {
   studentData:studentModal[];
   studentId="";
   title="Add Student Data";
+  buttonText="Add";
   
   constructor(private mainService : MainService,
     private formBuilder: FormBuilder,
@@ -47,7 +48,7 @@ export class AddUpdateStudentComponent implements OnInit {
         
         if(this.studentId){
           this.title="Update Student Data";
-
+          this.buttonText="Update";
           this.mainService.listStudentId(this.studentId).subscribe((res:any)=>{
             console.log(res);
             if(res.status == 1){
@@ -88,30 +89,56 @@ export class AddUpdateStudentComponent implements OnInit {
         this.formInvalid = true;
         return;
       }
+
+      if(!this.buttonText.localeCompare("Update")){
+        console.log("Update Student");
+        this.mainService.updateStudent(this.studentId,this.f.firstname.value,this.f.lastname.value,this.f.emailId.value,this.f.contactNumber.value,this.f.country.value,
+          this.f.instituteName.value,this.f.degreeType.value,this.f.instituteScore.value,this.f.scoreType.value,this.f.studentId.value,
+          this.f.uWinDegreeType.value,this.f.uWinScore.value, this.f.uWinScoreType.value).subscribe((response:any)=>{	
+            console.log(response.status);
+            if(response.status == 1){
+              console.log("Data added successfully");
+              
+              this.router.navigateByUrl('/students');
+              this.addStudentForm.reset();
+              //let data = response.data;
+              //console.log(data);
+            }
+            else{
+              console.log("Something Went Wrong!");
+            }
+          },(err)=>{
+            console.log(err);
+          });
+      }
+      else{
+        this.mainService.addStudent(this.f.firstname.value,this.f.lastname.value,this.f.emailId.value,this.f.contactNumber.value,this.f.country.value,
+          this.f.instituteName.value,this.f.degreeType.value,this.f.instituteScore.value,this.f.scoreType.value,this.f.studentId.value,
+          this.f.uWinDegreeType.value,this.f.uWinScore.value, this.f.uWinScoreType.value).subscribe((response:any)=>{	
+            console.log(response.status);
+            if(response.status == 1){
+              console.log("Data added successfully");
+              
+              this.router.navigateByUrl('/students');
+              this.addStudentForm.reset();
+              //let data = response.data;
+              //console.log(data);
+            }
+            else{
+              console.log("Something Went Wrong!");
+            }
+          },(err)=>{
+            console.log(err);
+          });
+        }
+      
+
       this.formInvalid = false;
       console.log("Logged Values:",this.f.firstname.value,this.f.lastname.value,this.f.emailId.value,this.f.contactNumber.value,this.f.country.value,
       this.f.instituteName.value,this.f.degreeType.value,this.f.instituteScore.value,this.f.scoreType.value,this.f.studentId.value,
       this.f.uWinDegreeType.value,this.f.uWinScore.value, this.f.uWinScoreType.value);
+    }
       
-      this.mainService.addStudent(this.f.firstname.value,this.f.lastname.value,this.f.emailId.value,this.f.contactNumber.value,this.f.country.value,
-        this.f.instituteName.value,this.f.degreeType.value,this.f.instituteScore.value,this.f.scoreType.value,this.f.studentId.value,
-        this.f.uWinDegreeType.value,this.f.uWinScore.value, this.f.uWinScoreType.value).subscribe((response:any)=>{	
-          console.log(response.status);
-          if(response.status == 1){
-            console.log("Data added successfully");
-            
-            //this.router.navigateByUrl('/dashboard');
-            this.addStudentForm.reset();
-            //let data = response.data;
-            //console.log(data);
-          }
-          else{
-            console.log("Something Went Wrong!");
-          }
-        },(err)=>{
-          console.log(err);
-        });
-      }
       
     }
     
