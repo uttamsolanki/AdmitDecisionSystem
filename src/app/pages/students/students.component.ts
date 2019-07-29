@@ -64,7 +64,7 @@ export class StudentsComponent implements OnInit {
                 
               }
             });
-            this.router.navigateByUrl('/students');
+            //this.router.navigateByUrl('/students');
               //this.addStudentForm.reset();
               //let data = response.data;
               //console.log(data);
