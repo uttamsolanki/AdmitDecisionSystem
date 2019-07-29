@@ -100,7 +100,7 @@ export class AddUpdateStudentComponent implements OnInit {
           if(response.status == 1){
             console.log("Data added successfully");
             
-            //this.router.navigateByUrl('/dashboard');
+            this.router.navigateByUrl('/students');
             this.addStudentForm.reset();
             //let data = response.data;
             //console.log(data);
