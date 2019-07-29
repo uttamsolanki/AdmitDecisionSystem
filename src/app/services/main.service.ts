@@ -32,18 +32,18 @@ export class MainService {
     high_dtype: string, high_degree_score: string, high_degree_stype: string, uwid: string, uw_degree_type: string,
     uw_score: string, uw_stype: string) {
     return this.http.post<any>(this.url+'/student/save', { fname, lname, email, contact, country, high_degree,
-        high_dtype, high_degree_score, high_degree_stype, uwid, uw_degree_type, uw_score, uw_stype})
-        .pipe(map(response => {
-          console.log('Success');
-            // login successful if there's a user in the response
-            if (response) {
-                // store user details and basic auth credentials in local storage 
-                // to keep user logged in between page refreshes
-                console.log(response);
-                //localStorage.setItem('currentUser', JSON.stringify(user.data));
-            }
-            return response;
-        }));
+        high_dtype, high_degree_score, high_degree_stype, uwid, uw_degree_type, uw_score, uw_stype});
+        // .pipe(map(response => {
+        //   console.log('Success');
+        //     // login successful if there's a user in the response
+        //     if (response) {
+        //         // store user details and basic auth credentials in local storage 
+        //         // to keep user logged in between page refreshes
+        //         console.log(response);
+        //         //localStorage.setItem('currentUser', JSON.stringify(user.data));
+        //     }
+        //     return response;
+        // }));
   }
 
   listStudent(){
@@ -63,18 +63,18 @@ export class MainService {
     uw_score: string, uw_stype: string){
 
       return this.http.put<any>(this.url+'/student/edit/'+id, { fname, lname, email, contact, country, high_degree,
-        high_dtype, high_degree_score, high_degree_stype, uwid, uw_degree_type, uw_score, uw_stype})
-        .pipe(map(response => {
-          console.log('Success');
-            // login successful if there's a user in the response
-            if (response) {
-                // store user details and basic auth credentials in local storage 
-                // to keep user logged in between page refreshes
-                console.log(response);
-                //localStorage.setItem('currentUser', JSON.stringify(user.data));
-            }
-            return response;
-        }));
+        high_dtype, high_degree_score, high_degree_stype, uwid, uw_degree_type, uw_score, uw_stype});
+        // .pipe(map(response => {
+        //   console.log('Success');
+        //     // login successful if there's a user in the response
+        //     if (response) {
+        //         // store user details and basic auth credentials in local storage 
+        //         // to keep user logged in between page refreshes
+        //         console.log(response);
+        //         //localStorage.setItem('currentUser', JSON.stringify(user.data));
+        //     }
+        //     return response;
+        // }));
   }
 
   listUniversity(){
@@ -82,18 +82,18 @@ export class MainService {
   }
 
   universityResult(uni:string){
-    return this.http.post<any>(this.url+'/studentByUni', { uni })
-      .pipe(map(response => {
-        console.log('Success');
-          // login successful if there's a user in the response
-          if (response) {
-              // store user details and basic auth credentials in local storage 
-              // to keep user logged in between page refreshes
-              console.log(response);
-              //localStorage.setItem('currentUser', JSON.stringify(user.data));
-          }
-          return response;
-      }));
+    return this.http.post<any>(this.url+'/student/studentByUni', { uni });
+      // .pipe(map(response => {
+      //   console.log('Success');
+      //     // login successful if there's a user in the response
+      //     if (response) {
+      //         // store user details and basic auth credentials in local storage 
+      //         // to keep user logged in between page refreshes
+      //         //console.log(response);
+      //         //localStorage.setItem('currentUser', JSON.stringify(user.data));
+      //     }
+      //     return response;
+      // }));
   }
 
   logout() {
