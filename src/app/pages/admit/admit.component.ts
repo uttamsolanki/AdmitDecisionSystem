@@ -62,6 +62,8 @@ export class AdmitComponent implements OnInit {
     get f() { return this.admitForm.controls; }
     
     getUniversityData(){
+
+    var pieChartlabel
       this.searched = true;
       
       this.mainService.universityResult(this.f.previousInst.value).subscribe((res:any)=>{
@@ -93,8 +95,9 @@ export class AdmitComponent implements OnInit {
       var chartOrders = document.getElementById('chart-orders');
   
       parseOptions(Chart, chartOptions());
-  
-  
+
+      chartExample2.data.labels=["Descrease","Stable","Increase"]
+      chartExample2.data.datasets=[{label:"Percentages",data:[46,28,24]}]
       var ordersChart = new Chart(chartOrders, {
         type: 'bar',
         options: chartExample2.options,
@@ -116,4 +119,3 @@ export class AdmitComponent implements OnInit {
       this.salesChart.update();
     }
   }
-  
