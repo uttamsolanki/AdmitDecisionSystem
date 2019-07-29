@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MainService } from '../../services/main.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -19,6 +19,10 @@ import {
   styleUrls: ['./admit.component.scss']
 })
 export class AdmitComponent implements OnInit {
+
+  @ViewChild('pieCanvas') pieCanvas;
+  pieChart: any;
+
   universityList : universityModal[];
   studentList : studentModal[];
   
@@ -85,7 +89,7 @@ export class AdmitComponent implements OnInit {
     
     this.universityName = this.f.previousInst.value;
     
-    var pieChartlabel
+    
       this.searched = true;
       
       this.mainService.universityResult(this.f.previousInst.value).subscribe((res:any)=>{
@@ -160,6 +164,35 @@ export class AdmitComponent implements OnInit {
           data: chartExample1.data
         });
         this.updateOptions();
+
+        this.pieChart = new Chart(this.pieCanvas.nativeElement, {
+          type: 'pie',
+          data: {
+            datasets: [{
+              fill: true,
+              backgroundColor: [
+              'green',
+              'grey',
+              'red'],
+              data: []
+            }],
+  
+            // These labels appear in the legend and in the tooltips when hovering different arcs
+            labels: [
+            ]
+          },
+          options: {
+  
+          }
+        });
+  
+        this.pieChart.data.labels = ["> Previous","= Previous", "< Previous"];
+          this.pieChart.data.datasets.forEach((dataset) => {
+            dataset.data=[(this.greaterThan / this.numberOfStudent ) * 100,( this.equalData / this.numberOfStudent ) * 100,( this.lessThan / this.numberOfStudent ) * 100];
+            console.log(dataset.data);
+          });
+          this.pieChart.update();
+
       });
       
       // this.datasets = [
@@ -168,9 +201,7 @@ export class AdmitComponent implements OnInit {
       // ];
       // this.data = this.datasets[0];
   
-  
-
-  
+      
     }
     public updateOptions() {
       this.salesChart.data.datasets[0].data = this.data;

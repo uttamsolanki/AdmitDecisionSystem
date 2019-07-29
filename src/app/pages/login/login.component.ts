@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     ngOnInit() {
       var currentUser = localStorage.getItem("currentUser");
       if(currentUser){
-        this.router.navigateByUrl('/dashboard');
+        this.router.navigateByUrl('/student');
       }
 
       this.loginForm = this.formBuilder.group({
@@ -63,4 +63,3 @@ export class LoginComponent implements OnInit, OnDestroy {
       });
     }
   }
-  
