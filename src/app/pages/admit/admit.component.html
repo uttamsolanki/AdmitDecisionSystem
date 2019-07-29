@@ -18,7 +18,7 @@
                                 <div class="col-lg-5">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-typeofdegree">Previous Institution</label>
-                                        <select class="form-control form-control-alternative" formControlName="previousInst">
+                                        <select class="form-control form-control-alternative" formControlName="previousInst" #selectoption>
                         <option value="" disabled>Please Select...</option>
                       <option *ngFor="let uni of universityList;" value="{{uni}}">{{uni}}</option>
                     </select>
@@ -26,7 +26,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-danger" (click)="getUniversityData()">Search</button>
+                        <button type="button" class="btn btn-danger" (click)="getUniversityData()" [disabled]="selectoption.value ==''">Search</button>
                     </form>
                 </div>
 
