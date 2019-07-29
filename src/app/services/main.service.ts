@@ -51,7 +51,7 @@ export class MainService {
   }
     // deleting student
   deleteStudent(id:string){
-      return this.http.delete(this.url+'/student/'+id);
+      return this.http.delete(this.url+'/student/delete/'+id);
   }
 
   listStudentId(id:string){

@@ -34,8 +34,24 @@ export class ViewStudentComponent implements OnInit {
   }
 
   deleteStudent(id:string){
-    console.log("delete student ",id);
+    console.log("Delete student",id);
     // this.mainService.deleteStudent(id).subscribe((res:any)=>{
     // });
+    this.mainService.deleteStudent(id).subscribe((response:any)=>{  
+            console.log(response.status);
+            if(response.status == 1){
+              console.log("Data deleted successfully");
+              
+            this.router.navigateByUrl('/students');
+              //this.addStudentForm.reset();
+              //let data = response.data;
+              //console.log(data);
+            }
+            else{
+              console.log("Something Went Wrong!");
+            }
+          },(err)=>{
+            console.log(err);
+          });
   }
 }
