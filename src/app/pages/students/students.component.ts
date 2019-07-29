@@ -52,5 +52,28 @@ export class StudentsComponent implements OnInit {
     console.log("Delete student",id);
     // this.mainService.deleteStudent(id).subscribe((res:any)=>{
     // });
+    this.mainService.deleteStudent(id).subscribe((response:any)=>{  
+            console.log(response.status);
+            if(response.status == 1){
+              console.log("Data deleted successfully");
+              
+              this.mainService.listStudent().subscribe((res:any)=>{
+              console.log(res);
+              if(res.status == 1){
+                this.studentList = res.data;
+                
+              }
+            });
+            this.router.navigateByUrl('/students');
+              //this.addStudentForm.reset();
+              //let data = response.data;
+              //console.log(data);
+            }
+            else{
+              console.log("Something Went Wrong!");
+            }
+          },(err)=>{
+            console.log(err);
+          });
   }
 }
