@@ -24,8 +24,8 @@ export class AdmitComponent implements OnInit {
   
   searched = false;
   
-  studentPrevResult : number[];
-  studentWinResult : number[];
+  studentPrevResult : number[] = [];
+  studentWinResult : number[] = [];
   
   public datasets: any;
   public data: any;
@@ -71,19 +71,23 @@ export class AdmitComponent implements OnInit {
         
         let i=0;
         for(i=0;i<this.studentList.length;i++) {
+          console.log(Number(this.studentList[i].high_degree_score));
+          console.log(this.studentPrevResult);
           this.studentPrevResult.push(Number(this.studentList[i].high_degree_score));
           this.studentWinResult.push(Number(this.studentList[i].uw_score));
         }
         console.log(this.studentPrevResult);
         console.log(this.studentWinResult);
+
+        this.data = this.studentWinResult;
         
       });
       
-      this.datasets = [
-        [0, 20, 10, 30, 15, 40, 20, 60, 60],
-        [0, 20, 5, 25, 10, 30, 15, 40, 40]
-      ];
-      this.data = this.datasets[0];
+      // this.datasets = [
+      //   [0, 20, 10, 30, 15, 40, 20, 60, 60],
+      //   [0, 20, 5, 25, 10, 30, 15, 40, 40]
+      // ];
+      // this.data = this.datasets[0];
   
   
       var chartOrders = document.getElementById('chart-orders');
