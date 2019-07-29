@@ -139,6 +139,5 @@ export class AddUpdateStudentComponent implements OnInit {
       this.f.uWinDegreeType.value,this.f.uWinScore.value, this.f.uWinScoreType.value);
     }
       
-      
     }
     
