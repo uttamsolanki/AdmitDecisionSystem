@@ -43,7 +43,7 @@ export class AdmitComponent implements OnInit {
   public clicked1: boolean = false;
   
   admitForm: FormGroup;
-  loading = false;
+  loading:boolean = false;
   submitted = false;
   returnUrl: string;
   
@@ -71,7 +71,7 @@ export class AdmitComponent implements OnInit {
     get f() { return this.admitForm.controls; }
     
     getUniversityData(){
-
+      this.loading = true;
       this.numberOfStudent = 0;
       this.averageWinScore = 0;
       this.averagePrevScore = 0;
