@@ -33,4 +33,9 @@ export class ViewStudentComponent implements OnInit {
     });
   }
 
+  deleteStudent(id:string){
+    console.log("delete student ",id);
+    // this.mainService.deleteStudent(id).subscribe((res:any)=>{
+    // });
+  }
 }
