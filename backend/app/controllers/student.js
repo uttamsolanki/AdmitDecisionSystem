@@ -40,17 +40,37 @@ module.exports = {
     },
 
     edit:async (req, res, next)=>{
-        // let day = dateFormat(Date.now(), "yyyy-mm-dd HH:MM:ss");
-        // const {name, desc} = req.body;
-        // let findUser = null;
-        //
-        // await find(User, {_id: req.user.sub}, null, (error, data) => {
-        //     findUser = data[0];
-        // });
+        const {fname, lname ,email ,contact, country,high_degree,high_dtype,high_degree_score,high_degree_stype,uwid,uw_degree_type,uw_score,uw_stype} = req.body;
 
+        Student.findOne({_id:req.params.id})
+            .exec( async function (err, student){
 
-        var rep = await successResponse(null,"Project Saved Successfully",{test:req.params.id})
-        return res.header('Content-type', 'application/json').status(HttpStatus.OK).json(rep);
+                let day = dateFormat(Date.now(), "yyyy-mm-dd HH:MM:ss");
+                student.fname = fname;
+                student.lname = lname;
+                student.email = email;
+                student.contact = contact;
+                student.country = country;
+                student.high_degree = high_degree;
+                student.high_dtype = high_dtype;
+                student.high_degree_score = high_degree_score;
+                student.high_degree_stype = high_degree_stype;
+                student.uwid = uwid;
+                student.uw_degree_type = uw_degree_type;
+                student.uw_score = uw_score;
+                student.uw_stype = uw_stype;
+                student.updated_date = day;
+                student.save();
+
+                if(student.save()) {
+                    var rep = await successResponse(1,"Student data has been updated",{data:student})
+                } else{
+                    var rep = await successResponse(0,"Student data not updated",{data:student})
+                }
+
+                return res.header('Content-type', 'application/json').status(HttpStatus.OK).json(rep);
+            });
+
 
     },
     save: async (req, res, next) => {
@@ -110,8 +130,6 @@ module.exports = {
     },
     delete: async (req, res, next) => {
 
-
-
         Student.remove({ _id: req.params.id }, function(err) {
             if (!err) {
                 var resp = {status:1,message: 'Student Deleted Successfully',data:{id:req.params.id}};
@@ -136,8 +154,8 @@ module.exports = {
 
     uni: async (req, res, next) => {
 
-        Student.find({}).select('high_degree -_id')
-            .exec(function (err, result){
+
+        Student.find({}).select('high_degree -_id').distinct('high_degree',function (err, result){
                 // console.log(result);
                 if(result) {
                     var resp = {status: 1, message: 'University list', data: result};
@@ -148,25 +166,18 @@ module.exports = {
             });
         //res.header('Content-Type', 'application/json').status(HttpStatus.OK).json(resp);
     },
-    getScenarioDetails:async (req, res, next) => {
-
-        let s_id = req.body.s_id;
-        let project = {};
-
-        // await find(Project, {_id: project_id}, null, (error, data) => {
-        //     project = data;
-        // });
-        Scenario.find({_id: s_id}).exec(function (err, scenario){
-                let respData =[];
-                if(!err){
-                    respData=scenario[0]
+    studentByUni:async (req, res, next) => {
+      const{uni} = req.body;
+        Student.find({high_degree:uni})
+            .exec(function (err, result){
+                // console.log(result);
+                if(result) {
+                    var resp = {status: 1, message: 'Student list', data: result};
+                } else{
+                    var resp = {status:1,message: 'Student list',data:result};
                 }
-                var resp = {status:1,message: 'Scenario Details ',data:respData};
                 res.json(resp);
             });
-
-
-
         //res.header('Content-Type', 'application/json').status(HttpStatus.OK).json(resp);
     },
 

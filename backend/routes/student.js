@@ -16,6 +16,9 @@ router.route("/edit/:id")
 router.route("/university")
     .get(StudentController.uni);
 
+router.route("/studentByUni")
+    .post(StudentController.studentByUni);
+
 router.route("/:id")
     .get(StudentController.get);
 

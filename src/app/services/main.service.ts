@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class MainService {
-  url = "http://10.243.18.210:8042";
+  url = "http://192.168.0.14:8042";
   constructor(private http: HttpClient) {
     
   }
