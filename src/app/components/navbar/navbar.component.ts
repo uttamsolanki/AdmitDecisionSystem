@@ -11,6 +11,7 @@ import { MainService } from '../../services/main.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  name = "Test";
   public focus;
   public listTitles: any[];
   public location: Location;
@@ -20,6 +21,13 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
+    let data:any = JSON.parse(localStorage.getItem('currentUser'));
+    //let userData = data.user;
+    //console.log(data)
+    //console.log(data.user);
+    //console.log(userData);
+    this.name = data.user.first_name + data.user.last_name;  
+    console.log(this.name);  
     this.listTitles = ROUTES.filter(listTitle => listTitle);
   }
   getTitle(){
