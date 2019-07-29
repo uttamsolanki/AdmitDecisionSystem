@@ -26,6 +26,10 @@ export class AdmitComponent implements OnInit {
   
   studentPrevResult : number[] = [];
   studentWinResult : number[] = [];
+
+  lessThan=0;
+  greaterThan=0;
+  equalData=0;
   
   public datasets: any;
   public data: any;
@@ -75,14 +79,41 @@ export class AdmitComponent implements OnInit {
         for(i=0;i<this.studentList.length;i++) {
           console.log(Number(this.studentList[i].high_degree_score));
           console.log(this.studentPrevResult);
-          this.studentPrevResult.push(Number(this.studentList[i].high_degree_score));
+
+          var windsorScore = Number(this.studentList[i].uw_score);
+          var temp;
+          if(!this.studentList[i].high_degree_stype.localeCompare('cgpa')){
+            temp = Number(this.studentList[i].high_degree_score);
+            temp *= 9.5;
+            this.studentPrevResult.push(temp); 
+          }
+          else if(!this.studentList[i].high_degree_stype.localeCompare('gpa')){
+            temp = Number(this.studentList[i].high_degree_score);
+            temp = (temp + 1) * 20;
+            this.studentPrevResult.push(temp);
+          }
+          else{
+            temp = Number(this.studentList[i].high_degree_score);
+            this.studentPrevResult.push(temp);  
+          }
+
+          if(windsorScore > temp){
+            this.greaterThan++;
+          }
+          else if(windsorScore < temp){
+            this.lessThan++;
+          }
+          else{
+            this.equalData++;
+          }
+          //this.studentPrevResult.push(Number(this.studentList[i].high_degree_score));
           this.studentWinResult.push(Number(this.studentList[i].uw_score));
         }
         console.log(this.studentPrevResult);
         console.log(this.studentWinResult);
 
         this.data = this.studentWinResult;
-        
+        console.log("Data", this.greaterThan, this.lessThan, this.equalData);
       });
       
       // this.datasets = [
