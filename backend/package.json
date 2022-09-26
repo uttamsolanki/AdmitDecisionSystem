@@ -37,7 +37,7 @@
     "passport": "latest",
     "passport-jwt": "^4.0.0",
     "passport-local": "latest",
-    "pm2": "^3.4.1",
+    "pm2": "^5.2.0",
     "request": "latest",
     "serve-favicon": "^2.5.0",
     "simple-encryptor": "latest",
